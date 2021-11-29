@@ -4,14 +4,20 @@
 // const btn = document.body.children[0];                  //Damit macht die Überschrift dass was vorher der Button gemacht hat, wenn er der obere Code deaktiviert ist
 
 /********  Event-Listener **********/
-btn.addEventListener("click", calculate);
-btn.addEventListener("mouseenter", onRollIn);
-btn.addEventListener("mouseenter", onRollout);
+btn.addEventListener("click", onClick);
 
-
-function test()
+function onClick()
 {
-    output("Hi");
+    if(onClick)
+    {
+        switchClassName("night");
+        switchBtnTxt("Night");
+    }else 
+    {
+        switchClassName("day");
+        switchBtnTxt("Day");
+    }
+    
 }
 
 function onRollIn()
@@ -24,7 +30,7 @@ function onRollout()
     output("onRollout");
 }
 
-function calculate()
+function calculate()                                       //Funktioniert
 {
 
 const one = parseInt(prompt("Bitte Zahl eingeben:"));
@@ -42,8 +48,23 @@ output(three);
 
 
 /********  Änderung in View-Schicht **********/
+// Modul: Umschaltung Klassennamen
+// switchClassName("night");
+// switchClassName("day");
+// switchClassName("day");
+function switchClassName(modeStr) 
+{
+    document.body.className = modeStr;
+    document.body.children[0].className = modeStr;     
+    document.body.children[1].className = modeStr;    
+}
 
-
+// Modul: Umschaltung BtnTxt | Test:
+// switchBtnTxt("night");
+// switchBtnTxt("day");
+function switchBtnTxt(modeStr) {
+    btn.innerHTML = modeStr;
+}    
 
 /* Tools */
 function output(outputData) {
