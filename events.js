@@ -1,53 +1,43 @@
 
 /********  Variablen **********/
- const btn = document.getElementById("trigBtn");
-// const btn = document.body.children[0];                  //Damit macht die Überschrift dass was vorher der Button gemacht hat, wenn er der obere Code deaktiviert ist
+var btn = document.getElementById("trigBtn");
+let setOn = true;
+
 
 /********  Event-Listener **********/
-btn.addEventListener("click", onClick);
+// Website geladen --> auf (Anfang)-Zustand umschalten
+window.addEventListener("load", toggleStatus);
 
-function onClick()
+// Klick auf Btn --> Zustand umschalten
+btn.addEventListener("click", toggleStatus);
+
+
+/********  Business-Logic | Toggle **********/
+function toggleStatus()
 {
-    if(onClick)
-    {
+    setOn = !setOn;                                       //Dreht die Variable um unspeichert sie wieder in die Variable....Schaltet beim klicken zwischen Dark und Day Mode um. Wichtig!!!!
+    updateView();
+}
+
+
+/********  Änderung in View-Schicht **********/
+// Modul: Update der View-Schicht
+function updateView()
+{
+   
+    if (setOn) {
         switchClassName("night");
-        switchBtnTxt("Night");
-    }else 
-    {
-        switchClassName("day");
         switchBtnTxt("Day");
+        
+    } else {
+        switchClassName("day");
+        switchBtnTxt("Night");
+        
     }
     
 }
 
-function onRollIn()
-{
-    output("onRollIn");
-}
 
-function onRollout()
-{
-    output("onRollout");
-}
-
-function calculate()                                       //Funktioniert
-{
-
-const one = parseInt(prompt("Bitte Zahl eingeben:"));
-const two = parseInt(prompt("Bitte Zahl eingeben:"));
-
-const three = one + two;
-
-output(three);
-    
-}
-
-
-/********  Business-Logic | Toggle **********/
-
-
-
-/********  Änderung in View-Schicht **********/
 // Modul: Umschaltung Klassennamen
 // switchClassName("night");
 // switchClassName("day");
@@ -55,9 +45,10 @@ output(three);
 function switchClassName(modeStr) 
 {
     document.body.className = modeStr;
-    document.body.children[0].className = modeStr;     
+    document.body.children[0].className = modeStr;          //Damit greift man auf die unterklassen zu wie in Body dass h1 etc.
     document.body.children[1].className = modeStr;    
 }
+
 
 // Modul: Umschaltung BtnTxt | Test:
 // switchBtnTxt("night");
@@ -65,6 +56,7 @@ function switchClassName(modeStr)
 function switchBtnTxt(modeStr) {
     btn.innerHTML = modeStr;
 }    
+
 
 /* Tools */
 function output(outputData) {

@@ -1,6 +1,6 @@
 
 /** Styles */
-
+/**Dark Mode**/
 button
 {
     display: block;
@@ -25,6 +25,7 @@ p.night
     color: white;
 }
 
+/**Day Mode**/
 
 body.day
 {
